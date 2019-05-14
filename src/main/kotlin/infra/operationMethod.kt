@@ -1,5 +1,5 @@
 package infra
 
-enum class OperationMethod(
-    GET: String, POST: String, PUT: String, DELETE: String
-)
+enum class OperationMethod(){
+    GET, POST, PUT, DELETE
+}

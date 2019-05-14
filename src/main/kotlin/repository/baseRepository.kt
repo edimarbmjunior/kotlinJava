@@ -12,7 +12,7 @@ import java.net.HttpURLConnection
 import java.net.URL
 import java.net.URLEncoder
 
-class BaseRepository () {
+abstract class BaseRepository {
     fun execute(fullParameters: FullParameters): HttpResponse{
         val conn: HttpURLConnection
         val response: HttpResponse
@@ -37,17 +37,23 @@ class BaseRepository () {
             val inputStream: InputStream = conn.inputStream
             response = HttpResponse(conn.responseCode, getStringFromInputStrem(inputStream))
         }
-
         return response
     }
 
-    fun getStringFromInputStrem(inputStream: InputStream):String{
+    private fun getStringFromInputStrem(inputStream: InputStream):String{
         try {
             val strBuilder: StringBuilder = StringBuilder()
             val br: BufferedReader = BufferedReader(InputStreamReader(inputStream))
 
-            for(line in br.readLine()){
+            /*for(line in br.readLine()){
+                println("inputStream: >" + line.toString())
                 strBuilder.append(line);
+            }*/
+
+            inputStream.bufferedReader().use {
+                it.lines().forEach { line ->
+                    strBuilder.append(line)
+                }
             }
 
             return strBuilder.toString()
