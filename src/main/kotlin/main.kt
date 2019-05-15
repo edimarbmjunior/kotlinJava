@@ -2,7 +2,6 @@ import business.PostBusiness
 
 fun main() {
 
-    println(PostBusiness().getAllPosts())
-
+    //println(PostBusiness().getAllPosts())
     PostListForm()
 }
