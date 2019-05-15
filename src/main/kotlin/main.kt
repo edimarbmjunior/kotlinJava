@@ -1,4 +1,4 @@
-import business.PostBusiness
+import ui.PostListForm
 
 fun main() {
 

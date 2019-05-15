@@ -1,3 +1,5 @@
+package ui;
+
 import business.PostBusiness;
 import entity.PostEntity;
 
@@ -34,6 +36,8 @@ public class PostListForm extends JFrame implements ListSelectionListener {
         int postId;
         if(e.getValueIsAdjusting()){
             postId = Integer.parseInt(this.tablePost.getValueAt(this.tablePost.getSelectedRow(), 0).toString());
+            System.out.println("Id(Selecionado): > " + postId);
+            new postDetailForm(postId);
         }
     }
 
@@ -63,8 +67,6 @@ public class PostListForm extends JFrame implements ListSelectionListener {
                 break;
             }
         }
-        System.out.println("ColumnCountModel: >" + model.getColumnCount());
-        System.out.println("ColumnCountModel: >" + model.getRowCount());
         this.tablePost.setModel(model);
     }
 }
